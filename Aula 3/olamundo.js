@@ -5,3 +5,5 @@ app.get('/', (request, response) => {
 
 response.send('Olá, Mundo!')
 })
+
+app.listen(8080)
