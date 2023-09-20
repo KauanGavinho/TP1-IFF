@@ -48,7 +48,7 @@ app.get('/divide', (req, res) => {
     result = parseFloat(req.query.n1) / parseFloat(req.query.n2)
     if (req.query.n2 == 0) {
         result = "O valor do número dois não é válido para esta operação"
-    }if (isNaN(result)) {
+    }else if (isNaN(result)) {
         result = "Valores inválidos."
     } else {
         result = `${req.query.n1} ÷ ${req.query.n2} = ${result}`
