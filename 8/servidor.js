@@ -1,18 +1,30 @@
-const express = require("express");
-const app = express();
+const express = require('express')
 const fs = require('fs')
-app.set("view engine", "ejs")
-const PORT = 8080
+const PORT = '8080'
 
-app.get("/", (req, res) => {
-    res.render('index');
-    resultado = ''
-    
+const app = express()
+app.use(express.urlencoded({ extended: true }))
+app.set("view engine", "ejs")
+
+app.get('/', (request, response) => {
+    resultado = ""
+    response.render('index', { resultado })
 })
-app.get("/salvar", (req, res) => {
-    let nome = req.body.nomeresultado = (`Olá, ${nome}`)
+
+app.post('/salvar', (req, res) => {
+    let nomeNoForm = req.body.nome
+    // Salvando um nome (sobrescrevendo o arquivo)
+    //fs.writeFileSync('nome.txt', nomeNoForm)
+    // Salvando vários nomes
+    //fs.appendFileSync('nomes.txt', `\n${nomeNoForm}`)
+    let cadastro = {nome: nomeNoForm}
+    console.log(cadastro);
+    console.log('\n'+JSON.stringify(cadastro)+',');
+    fs.appendFileSync('nomes.json', `\n${JSON.stringify(cadastro)}`)
+    resultado = `Olá, ${nomeNoForm}`
     res.render('index', { resultado })
 })
+
 
 
 app.listen(PORT, () => console.log(`Server rodando na porta ${PORT}`))
