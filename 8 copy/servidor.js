@@ -40,5 +40,5 @@ app.post('/salvar', (req, res) => {
 app.get('/mostrar', (req, res) => {
     res.render('nomes', { vetorNomes })
 })
-
+b
 app.listen(8080)
